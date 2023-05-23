@@ -28,8 +28,8 @@ export const DetailsScreen = ({navigation}) => {
         accessoryLeft={BackAction}
       />
       <Divider />
-      <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text category="h1">DETAILS</Text>
+      <Layout style={styles.contentContainer}>
       </Layout>
     </SafeAreaView>
   );
