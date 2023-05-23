@@ -51,11 +51,12 @@ export const DetailsScreen = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <TopNavigation
         title="Details Screen"
         alignment="center"
         accessoryLeft={BackAction}
+        accessibilityRole="header"
       />
       <Divider />
       <Layout style={styles.contentContainer}>
