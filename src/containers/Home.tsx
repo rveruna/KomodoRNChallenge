@@ -16,14 +16,25 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './HomeScreenStyles';
 import {openLocation} from '../util/openLocation';
+import {NavigationProp} from '@react-navigation/native';
 
-const AddIcon = props => <Icon {...props} name="plus-outline" />;
+interface Location {
+  name: string;
+  description: string;
+  location: string;
+}
 
-export const HomeScreen = ({navigation}) => {
-  const [isError, setIsError] = useState(null);
-  const [locations, setLocations] = useState([]);
+interface Props {
+  navigation: NavigationProp<any>;
+}
+
+const AddIcon = (props: any) => <Icon {...props} name="plus-outline" />;
+
+export const HomeScreen: React.FC<Props> = ({navigation}: Props) => {
+  const [isError, setIsError] = useState<boolean | null>(null);
+  const [locations, setLocations] = useState<Location[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [pressedItemIndex, setPressedItemIndex] = useState(null);
+  const [pressedItemIndex, setPressedItemIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -59,12 +70,12 @@ export const HomeScreen = ({navigation}) => {
     />
   );
 
-  const handleItemPress = (index, location) => {
+  const handleItemPress = (index: number, location: string) => {
     setPressedItemIndex(index);
     openLocation(location);
   };
 
-  const renderItem = ({item, index}) => {
+  const renderItem = ({item, index}: {item: Location; index: number}) => {
     const isItemPressed = pressedItemIndex === index;
 
     return (

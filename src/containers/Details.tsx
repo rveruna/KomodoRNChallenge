@@ -13,10 +13,16 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './DetailsScreenStyles';
 
-const BackIcon = props => <Icon {...props} name="arrow-back" />;
-const SaveIcon = props => <Icon {...props} name="checkmark-outline" />;
+interface Location {
+  name: string;
+  description: string;
+  location: string;
+}
 
-export const DetailsScreen = ({navigation}) => {
+const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
+const SaveIcon = (props: any) => <Icon {...props} name="checkmark-outline" />;
+
+export const DetailsScreen = ({navigation}: {navigation: any}) => {
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [name, setName] = useState('');
@@ -37,7 +43,8 @@ export const DetailsScreen = ({navigation}) => {
   const saveLocation = async () => {
     try {
       const locations = await AsyncStorage.getItem('locations');
-      const parsedLocations = locations != null ? JSON.parse(locations) : [];
+      const parsedLocations: Location[] =
+        locations != null ? JSON.parse(locations) : [];
 
       parsedLocations.push({name, description, location});
 
