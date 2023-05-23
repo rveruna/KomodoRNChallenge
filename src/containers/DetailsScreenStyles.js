@@ -1,6 +1,12 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  backButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 44,
+    width: 44,
+  },
   contentContainer: {
     alignItems: 'center',
     flex: 1,

@@ -26,7 +26,12 @@ export const DetailsScreen = ({navigation}) => {
   };
 
   const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+    <TopNavigationAction
+      accessibilityLabel="Go to home screen"
+      icon={BackIcon}
+      onPress={navigateBack}
+      style={styles.backButton}
+    />
   );
 
   const saveLocation = async () => {
