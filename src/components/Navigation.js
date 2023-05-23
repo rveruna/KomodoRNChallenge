@@ -7,7 +7,10 @@ import {DetailsScreen} from '../containers/Details';
 const {Navigator, Screen} = createStackNavigator();
 
 const HomeNavigator = () => (
-  <Navigator headerMode="none">
+  <Navigator
+    screenOptions={{
+      headerShown: false,
+    }}>
     <Screen name="Home" component={HomeScreen} />
     <Screen name="Details" component={DetailsScreen} />
   </Navigator>
