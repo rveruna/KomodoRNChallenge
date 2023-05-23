@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     alignSelf: 'center',
   },
+  noLocationsText: {
+    marginVertical: 50,
+    alignSelf: 'center',
+  },
 });
 
 export default styles;

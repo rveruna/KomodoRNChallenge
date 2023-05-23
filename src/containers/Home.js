@@ -1,7 +1,8 @@
-import {SafeAreaView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
   FlatList,
+  SafeAreaView,
 } from 'react-native';
 import {
   Icon,
@@ -17,7 +18,9 @@ import styles from './HomeScreenStyles';
 const AddIcon = props => <Icon {...props} name="plus-outline" />;
 
 export const HomeScreen = ({navigation}) => {
+  const [isError, setIsError] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadLocations = async () => {
     try {
@@ -25,7 +28,9 @@ export const HomeScreen = ({navigation}) => {
 
       setLocations(storedLocations != null ? JSON.parse(storedLocations) : []);
     } catch (error) {
+      setIsError(true);
     } finally {
+      setIsLoading(false);
     }
   };
 
@@ -39,6 +44,10 @@ export const HomeScreen = ({navigation}) => {
 
 
   const renderLocations = () => {
+    if (locations.length === 0) {
+      return <Text style={styles.noLocationsText}>No locations added</Text>;
+    }
+
     return (
       <FlatList
         data={locations}
@@ -47,6 +56,23 @@ export const HomeScreen = ({navigation}) => {
       />
     );
   };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color="#F0F0F0" />
+      </SafeAreaView>
+    );
+  }
+
+  if (isError) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text>Something went wrong!</Text>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <TopNavigation
