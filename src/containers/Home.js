@@ -6,6 +6,7 @@ import {
   Layout,
   TopNavigation,
   TopNavigationAction,
+  Text,
 } from '@ui-kitten/components';
 import styles from './HomeScreenStyles';
 
@@ -28,12 +29,11 @@ export const HomeScreen = ({navigation}) => {
         accessoryRight={NavigationButton}
       />
       <Divider />
-      <Layout
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}></Layout>
+      <Layout style={styles.contentContainer}>
+        <Text category="h1" style={styles.heading}>
+          Locations
+        </Text>
+      </Layout>
     </SafeAreaView>
   );
 };
