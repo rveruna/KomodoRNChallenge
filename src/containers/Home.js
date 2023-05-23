@@ -39,7 +39,13 @@ export const HomeScreen = ({navigation}) => {
   };
 
   const NavigationButton = () => (
-    <TopNavigationAction icon={AddIcon} onPress={navigateDetails} />
+    <TopNavigationAction
+      accessibilityLabel="Add new location"
+      accessibilityHint="Opens details screen"
+      icon={AddIcon}
+      onPress={navigateDetails}
+      style={styles.addButton}
+    />
   );
 
 
