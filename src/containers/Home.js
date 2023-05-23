@@ -7,6 +7,7 @@ import {
   TopNavigation,
   TopNavigationAction,
 } from '@ui-kitten/components';
+import styles from './HomeScreenStyles';
 
 const AddIcon = props => <Icon {...props} name="plus-outline" />;
 
@@ -20,7 +21,7 @@ export const HomeScreen = ({navigation}) => {
   );
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <TopNavigation
         title="Home Screen"
         alignment="center"
