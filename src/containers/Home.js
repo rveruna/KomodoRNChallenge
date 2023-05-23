@@ -25,6 +25,13 @@ export const HomeScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [pressedItemIndex, setPressedItemIndex] = useState(null);
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadLocations();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   const loadLocations = async () => {
     try {
