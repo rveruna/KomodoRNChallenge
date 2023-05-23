@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   FlatList,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 import {
   Icon,
@@ -14,6 +15,7 @@ import {
 } from '@ui-kitten/components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './HomeScreenStyles';
+import {openLocation} from '../util/openLocation';
 
 const AddIcon = props => <Icon {...props} name="plus-outline" />;
 
@@ -21,6 +23,8 @@ export const HomeScreen = ({navigation}) => {
   const [isError, setIsError] = useState(null);
   const [locations, setLocations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [pressedItemIndex, setPressedItemIndex] = useState(null);
+
 
   const loadLocations = async () => {
     try {
@@ -48,6 +52,32 @@ export const HomeScreen = ({navigation}) => {
     />
   );
 
+  const handleItemPress = (index, location) => {
+    setPressedItemIndex(index);
+    openLocation(location);
+  };
+
+  const renderItem = ({item, index}) => {
+    const isItemPressed = pressedItemIndex === index;
+
+    return (
+      <TouchableOpacity
+        onPress={() => handleItemPress(index, item.location)}
+        activeOpacity={0.8}>
+        <Layout
+          style={[
+            styles.itemContainer,
+            isItemPressed && styles.itemContainerPressed,
+          ]}>
+          <Text style={styles.itemName}>{item.name}</Text>
+          <Text style={styles.itemDescription}>
+            Description: {item.description}
+          </Text>
+          <Text style={styles.itemLocation}>Location: {item.location}</Text>
+        </Layout>
+      </TouchableOpacity>
+    );
+  };
 
   const renderLocations = () => {
     if (locations.length === 0) {

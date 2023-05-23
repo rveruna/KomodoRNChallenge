@@ -18,6 +18,27 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     alignSelf: 'center',
   },
+  itemContainer: {
+    marginHorizontal: 20,
+    marginVertical: 10,
+    padding: 20,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 8,
+  },
+  itemName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  itemDescription: {
+    fontSize: 14,
+  },
+  itemLocation: {
+    fontSize: 12,
+    fontStyle: 'italic',
+  },
+  itemContainerPressed: {
+    backgroundColor: '#E0E0E0',
+  },
   noLocationsText: {
     marginVertical: 50,
     alignSelf: 'center',
