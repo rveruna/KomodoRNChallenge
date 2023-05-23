@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
   heading: {
     marginBottom: 20,
   },
+  input: {
+    marginBottom: 12,
+  },
 });
 
 export default styles;
