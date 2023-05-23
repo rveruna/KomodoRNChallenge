@@ -28,8 +28,10 @@ export const DetailsScreen = ({navigation}) => {
         accessoryLeft={BackAction}
       />
       <Divider />
-        <Text category="h1">DETAILS</Text>
       <Layout style={styles.contentContainer}>
+        <Text category="h1" style={styles.heading} accessibilityRole="header">
+          Details
+        </Text>
       </Layout>
     </SafeAreaView>
   );

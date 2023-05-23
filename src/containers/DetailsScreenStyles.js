@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 20,
   },
+  heading: {
+    marginBottom: 20,
+  },
 });
 
 export default styles;
