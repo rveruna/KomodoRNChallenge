@@ -14,8 +14,8 @@ import {
   Text,
 } from '@ui-kitten/components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from './HomeScreenStyles';
-import {openLocation} from '../util/openLocation';
+import styles from './styles';
+import {openLocation} from '../../util/openLocation';
 import {NavigationProp} from '@react-navigation/native';
 
 interface Location {

@@ -11,7 +11,7 @@ import {
   TopNavigationAction,
 } from '@ui-kitten/components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from './DetailsScreenStyles';
+import styles from './styles';
 
 interface Location {
   name: string;
