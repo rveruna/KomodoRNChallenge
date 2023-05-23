@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 12,
   },
+  saveButton: {
+    marginBottom: 24,
+    width: '100%',
+  },
 });
 
 export default styles;

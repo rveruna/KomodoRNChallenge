@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {
+  Button,
   Divider,
   Icon,
   Input,
@@ -9,9 +10,11 @@ import {
   TopNavigation,
   TopNavigationAction,
 } from '@ui-kitten/components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './DetailsScreenStyles';
 
 const BackIcon = props => <Icon {...props} name="arrow-back" />;
+const SaveIcon = props => <Icon {...props} name="checkmark-outline" />;
 
 export const DetailsScreen = ({navigation}) => {
   const [description, setDescription] = useState('');
@@ -25,6 +28,22 @@ export const DetailsScreen = ({navigation}) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
+
+  const saveLocation = async () => {
+    try {
+      const locations = await AsyncStorage.getItem('locations');
+      const parsedLocations = locations != null ? JSON.parse(locations) : [];
+
+      parsedLocations.push({name, description, location});
+
+      await AsyncStorage.setItem('locations', JSON.stringify(parsedLocations));
+
+      navigateBack();
+    } catch (error) {
+      // Saving error
+      console.log(error);
+    }
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -60,6 +79,13 @@ export const DetailsScreen = ({navigation}) => {
           onChangeText={setLocation}
           style={styles.input}
         />
+        <Button
+          accessoryRight={SaveIcon}
+          onPress={saveLocation}
+          style={styles.saveButton}
+          accessibilityLabel="Save the details">
+          Save
+        </Button>
       </Layout>
     </SafeAreaView>
   );
